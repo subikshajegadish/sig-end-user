@@ -103,6 +103,7 @@ def get_id(video):
 
 def fetch_transcripts(args, videos):
     processed = []
+    transcript_api = YouTubeTranscriptApi()
     for video in videos:
         video_id = get_id(video)
         
@@ -116,7 +117,7 @@ def fetch_transcripts(args, videos):
             continue
 
         try:
-            transcript = YouTubeTranscriptApi().fetch(video_id, languages=('en','es', 'fr', 'de', 'ja'))
+            transcript = transcript_api.fetch(video_id, languages=('en','es', 'fr', 'de', 'ja'))
             full_text = ' '.join([snippet.text for snippet in transcript])
             video['transcript'] = full_text
             processed.append(video)

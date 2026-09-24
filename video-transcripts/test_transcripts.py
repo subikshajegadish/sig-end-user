@@ -219,7 +219,7 @@ class TestTranscripts(unittest.TestCase):
         mock_build.assert_called_once()
         mock_youtube.search().list.assert_called()
 
-    @patch('transcripts.YouTubeTranscriptApi')
+    @patch('transcripts.YouTubeTranscriptApi', autospec=True)
     @patch('transcripts.openai_cleanup')
     def test_fetch_transcripts_integration(self, mock_cleanup, mock_transcript_api):
         """Test fetch_transcripts with mocked APIs"""
